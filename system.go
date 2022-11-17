@@ -28,23 +28,13 @@ func (s *System) mergeMaps() map[string]uint64 {
 	return merged
 }
 
-var latestSystem *System
-
 func GetLatestSystem() *System {
-	return latestSystem
-}
+	system, err := getSystem()
 
-func StartPollingSystem() {
-	for {
-		system, err := getSystem()
-
-		if err != nil {
-			panic(fmt.Sprintf("Failed loading system data with error: %s", err))
-		}
-
-		latestSystem = system
-		time.Sleep(time.Second * 5)
+	if err != nil {
+		panic(fmt.Sprintf("Failed loading system data with error: %s", err))
 	}
+	return system
 }
 
 func getSystem() (*System, error) {

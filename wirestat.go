@@ -39,8 +39,6 @@ func main() {
 
 	responseBuilder := NewResponseBuilder(rules)
 
-	go StartPollingSystem()
-
 	fmt.Println(fmt.Sprintf("Starting server, listening on: http://0.0.0.0:%d", *portOpt))
 	startServer(responseBuilder, *portOpt)
 }
